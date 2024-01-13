@@ -18,6 +18,7 @@ export default function SignUp() {
   const [buttonDisabled, setButtonDisabled] = useState(false)
 
   const [loading, setLoading] = useState(false)
+  const [showPass, setShowPass] = useState(false)
 
 
   useEffect(() => {
@@ -79,12 +80,19 @@ export default function SignUp() {
 
 
           <div className='flex flex-row my-6'>
-            <p className='mx-4 self-center text-lg font-medium w-24'> Password </p>
-            <input type='password' id="password"
-            className='p-2 rounded-md text-black border-gray-800 border-2'
-            value={user.password}
-            onChange={(e) => setUser({...user, password: e.target.value})}
-            />
+            <p className='mx-4 text-lg font-medium w-24 focus:outline-none'> Password </p>
+
+            <div className='flex flex-col justify-start align-top'>
+              <input type={showPass ? 'text' : 'password'} id="password"
+              className='p-2 rounded-md text-black border-gray-800 border-2'
+              value={user.password}
+              onChange={(e) => setUser({...user, password: e.target.value})}
+              />
+              <div className='flex flex-row justify-start my-2'>
+                <input type="checkbox" name="showPass" id="showPass" className='mr-2 w-4 h-4 self-center' onChange={() => setShowPass(!showPass)} /> 
+                <p> Show Password </p>
+              </div>
+            </div>
           </div>
 
           <div className='flex flex-row justify-center'>
@@ -97,7 +105,7 @@ export default function SignUp() {
           
 
           <div className='flex flex-row my-6'> 
-            <input type="checkbox" name="haveLogin" id="haveLogin" className='mx-4 w-4 h-4 self-center' />
+            {/* <input type="checkbox" name="haveLogin" id="haveLogin" className='mx-4 w-4 h-4 self-center' /> */}
             <p className='self-center'> Already have an account ? <Link href={'/login'} className='underline text-blue-500'> Login Here </Link> </p>
           </div>
 

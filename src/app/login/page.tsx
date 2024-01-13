@@ -4,6 +4,7 @@ import Link from 'next/link'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
+import { LiaCommentSolid } from 'react-icons/lia'
 
 export default function LoginPage() {
   
@@ -15,6 +16,9 @@ export default function LoginPage() {
 
   const [buttonDisabled, setButtonDisabled] = useState(false)
   const [loading, setLoading] = useState(false)
+
+  const [showPass, setShowPass] = useState(false)
+  
 
   const onLogin = async () => {
 
@@ -64,12 +68,19 @@ export default function LoginPage() {
 
 
           <div className='flex flex-row my-6'>
-            <p className='mx-4 self-center text-lg font-medium w-24 focus:outline-none'> Password </p>
-            <input type='password' id="password"
-            className='p-2 rounded-md text-black border-gray-800 border-2'
-            value={user.password}
-            onChange={(e) => setUser({...user, password: e.target.value})}
-            />
+            <p className='mx-4 text-lg font-medium w-24 focus:outline-none'> Password </p>
+
+            <div className='flex flex-col justify-start align-top'>
+              <input type={showPass ? 'text' : 'password'} id="password"
+              className='p-2 rounded-md text-black border-gray-800 border-2'
+              value={user.password}
+              onChange={(e) => setUser({...user, password: e.target.value})}
+              />
+              <div className='flex flex-row justify-start my-2'>
+                <input type="checkbox" name="showPass" id="showPass" className='mr-2 w-4 h-4 self-center' onChange={() => setShowPass(!showPass)} /> 
+                <p> Show Password </p>
+              </div>
+            </div>
           </div>
 
           <div className='flex flex-row justify-center'>
@@ -82,7 +93,7 @@ export default function LoginPage() {
           
 
           <div className='flex flex-row my-6'> 
-            <input type="checkbox" name="haveAccount" id="haveAccount" className='mx-4 w-4 h-4 self-center' />
+            {/* <input type="checkbox" name="haveAccount" id="haveAccount" className='mx-4 w-4 h-4 self-center' /> */}
             <p className='self-center'> Don't have an account ? <Link href={'/signup'} className='underline text-blue-500'> SignUp Here </Link> </p>
           </div>
 
