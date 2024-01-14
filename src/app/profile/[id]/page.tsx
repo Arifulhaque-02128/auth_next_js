@@ -16,6 +16,7 @@ export default function userProfile({params} : any) {
       await axios.get('/api/users/logout')
 
       router.push('/login')
+      toast.success("Logout Successfully.")
       
     } catch (err: any) {
       console.log(err.message)

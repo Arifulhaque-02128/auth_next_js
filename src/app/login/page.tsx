@@ -4,7 +4,6 @@ import Link from 'next/link'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
-import { LiaCommentSolid } from 'react-icons/lia'
 
 export default function LoginPage() {
   
@@ -28,7 +27,6 @@ export default function LoginPage() {
       
       const res = await axios.post('/api/users/login', user)
       console.log("Login Successfull.", res.data)
-
       toast.success("Login Successfull.")
 
       router.push('/profile/'+res.data.data.username)
@@ -53,6 +51,7 @@ export default function LoginPage() {
 
   return (
     <div className='flex flex-col justify-center min-h-screen'>
+        
         <h1 className='text-2xl my-4 font-bold self-center'>Login</h1>
 
         <div className='self-center bg-lime-200 p-12 text-black rounded-md'>
