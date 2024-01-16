@@ -39,7 +39,8 @@ export default function SignUp() {
       )
 
       console.log("SignUp successfull. ",  res.data)
-      router.push('/login')
+      // router.push('/login')
+      router.push('/temp')
 
 
     } catch (err : any) {

@@ -9,9 +9,17 @@ export async function POST (request : NextRequest) {
     try {
 
         const requestBody = await request.json()
-        const {token} = requestBody
+        const {token, emailType} = requestBody
 
-        const userInfo = await User.findOne({verifyToken : token, verifyTokenExpiry : {$gt : Date.now()} })
+        let userInfo:any;
+
+        if(emailType === "VERIFY"){
+            userInfo = await User.findOne({verifyToken : token, verifyTokenExpiry : {$gt : Date.now()} })
+        } else {
+            userInfo = await User.findOne({forgetPasswordToken : token, forgetPasswordTokenExpiry : {$gt : Date.now()} })
+        }
+
+        
 
         if(!userInfo) {
             return NextResponse.json({error : "Invalid token."}, {status : 400})
@@ -25,6 +33,7 @@ export async function POST (request : NextRequest) {
 
         return NextResponse.json({
             message : "Verification Successfull.",
+            email : userInfo.email,
             success : true
         })
         

@@ -40,6 +40,10 @@ export default function LoginPage() {
 
   }
 
+  const onForgetPass = () => {
+
+  }
+
   useEffect(() => {
     const {email, password} = user
     if(email.length > 0 && password.length > 0) {
@@ -77,7 +81,7 @@ export default function LoginPage() {
               />
               <div className='flex flex-row justify-start my-2'>
                 <input type="checkbox" name="showPass" id="showPass" className='mr-2 w-4 h-4 self-center' onChange={() => setShowPass(!showPass)} /> 
-                <p> Show Password </p>
+                <p className='text-sm font-light'> Show Password </p>
               </div>
             </div>
           </div>
@@ -93,8 +97,9 @@ export default function LoginPage() {
 
           <div className='flex flex-row my-6'> 
             {/* <input type="checkbox" name="haveAccount" id="haveAccount" className='mx-4 w-4 h-4 self-center' /> */}
-            <p className='self-center'> Don't have an account ? <Link href={'/signup'} className='underline text-blue-500'> SignUp Here </Link> </p>
+            <p className='self-center text-sm font-light'> Don't have an account ? <Link href={'/signup'} className='underline text-blue-500'> SignUp Here </Link> </p>
           </div>
+          <p className='text-sm font-light underline text-blue-500'><Link href="/forgetPass" onClick={onForgetPass}>Forget Password ?</Link></p>
 
         </div>
     </div>

@@ -13,7 +13,7 @@ export default function VerifyEmailPage() {
   const verifyEmail = async () => {
     try {
 
-        await axios.post('/api/users/verifyemail', {token})
+        await axios.post('/api/users/verifyemail', {token, emailType : "VERIFY"})
         setIsverified(true)
         toast.success("Verification successfull")
         
@@ -27,7 +27,7 @@ export default function VerifyEmailPage() {
   useEffect(() => {
     const urlToken = window.location.search.split("=")[1] || ''
     setToken(urlToken)
-  })
+  }, [])
 
   useEffect(() => {
 
@@ -50,7 +50,7 @@ export default function VerifyEmailPage() {
             isVerified && 
             <div>
                 <h1 className='text-2xl text-white'>Your Email is verified.</h1>
-                <Link href={'/login'}>Login</Link>
+                <p className='text-blue-500 underline'> <Link href={'/login'}>Login</Link> </p>
             </div>
         }
         {
